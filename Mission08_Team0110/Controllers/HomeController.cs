@@ -18,12 +18,12 @@ namespace Mission08_Team0110.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Quadrants()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult AddTask()
         {
             return View();
         }
