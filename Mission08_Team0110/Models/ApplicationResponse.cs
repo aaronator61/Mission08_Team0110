@@ -13,7 +13,9 @@ namespace Mission08_Team0110.Models
         public int taskId { get; set; }
         [Required]
         public string task {get; set; }
-        public string DueDate { get; set; }
+       
+        public DateTime DueDate { get; set; }
+
         [Required]
         public byte Quadrant { get; set; }
         public bool Completed  { get; set; }
