@@ -5,13 +5,11 @@
     ViewData["Title"] = "Task Form";
 }
 
-<!-- @model Mission06_plessem.Models.ApplicationResponse
-    -->
+
+@model Mission08_Team0110.Models.ApplicationResponse
 
 <h2>Task Form</h2>
-
-<br />
-<br />
+<br /><br />
 
 <div>
     <!--Form to add in tasks to the database-->
@@ -34,11 +32,15 @@
 
         <label asp-for="CategoryId">Category:</label>
         <select asp-for="CategoryId">
+            <option>Select a Category</option>
+            <option>Values will go here once model is connected</option>
+            
             <option value="">Select a Category</option>
             @foreach (Category c in ViewBag.Categories)
             {
             <option value="@c.CategoryId">@c.CategoryName</option>
             }
+            
         </select>
         <br /><br />
 
