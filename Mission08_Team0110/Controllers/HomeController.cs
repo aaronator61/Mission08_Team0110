@@ -33,6 +33,8 @@ namespace Mission08_Team0110.Controllers
         public IActionResult TaskForm()
         {
             ViewBag.Categories = quadContext.Categories.ToList();
+            string pageTitle = "Add Task";
+            ViewBag.Title = pageTitle;
             return View(new ApplicationResponse());
         }
 
@@ -46,16 +48,19 @@ namespace Mission08_Team0110.Controllers
             }
 
             ViewBag.Categories = quadContext.Categories.ToList();
-            return View();
+            return RedirectToAction("Quadrants");
         }
 
         [HttpGet]
         public IActionResult Edit (int id)
         {
-            ViewBag.Categories = quadContext.responses.ToList();
+            ViewBag.Categories = quadContext.Categories.ToList();
             var application = quadContext.responses.Include(x => x.Category)
                                 .Single(x => x.taskId == id);
-            return View("TaskForm");
+
+            string pageTitle = "Edit Task";
+            ViewBag.Title = pageTitle;
+            return View("TaskForm", application);
         }
 
         [HttpPost]
@@ -68,7 +73,7 @@ namespace Mission08_Team0110.Controllers
             }
             
 
-            return RedirectToAction("Quadrant");
+            return RedirectToAction("Quadrants");
         }
         [HttpGet]
         public IActionResult Delete(int id)
@@ -83,7 +88,7 @@ namespace Mission08_Team0110.Controllers
             quadContext.responses.Remove(ar);
             quadContext.SaveChanges();
 
-            return RedirectToAction("Quadrant");
+            return RedirectToAction("Quadrants");
         }
 
 
