@@ -23,7 +23,7 @@ namespace Mission08_Team0110.Controllers
             return View();
         }
 
-        public IActionResult AddTask()
+        public IActionResult TaskForm()
         {
             return View();
         }
