@@ -1,0 +1,55 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Task Form";
+}
+
+<!-- @model Mission06_plessem.Models.ApplicationResponse
+    -->
+
+<h2>Task Form</h2>
+
+<br />
+<br />
+
+<div>
+    <!--Form to add in tasks to the database-->
+    <form method="post">
+        <input type="hidden" asp-for="TaskId" />
+
+        <div asp-validation-summary="All"></div>
+
+        <label asp-for="Task">Task:</label>
+        <input asp-for="Task" />
+        <br /><br />
+
+        <label asp-for="DueDate">Due Date:</label>
+        <input asp-for="DueDate" />
+        <br /><br />
+
+        <label asp-for="Quadrant">Quadrant:</label>
+        <input asp-for="Quadrant" />
+        <br /><br />
+
+        <label asp-for="CategoryId">Category:</label>
+        <select asp-for="CategoryId">
+            <option value="">Select a Category</option>
+            @foreach (Category c in ViewBag.Categories)
+            {
+            <option value="@c.CategoryId">@c.CategoryName</option>
+            }
+        </select>
+        <br /><br />
+
+        <label asp-for="Completed">Completed:</label>
+        <select asp-for="Completed">
+            <option></option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <br /><br />
+
+        <button type="submit">Submit Task</button>
+    </form>
+</div>
