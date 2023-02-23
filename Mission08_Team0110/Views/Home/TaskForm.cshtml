@@ -14,12 +14,12 @@
 <div>
     <!--Form to add in tasks to the database-->
     <form method="post">
-        <input type="hidden" asp-for="TaskId" />
+        <input type="hidden" asp-for="taskId" />
 
         <div asp-validation-summary="All"></div>
 
-        <label asp-for="Task">Task:</label>
-        <input asp-for="Task" />
+        <label asp-for="task">Task:</label>
+        <input asp-for="task" />
         <br /><br />
 
         <label asp-for="DueDate">Due Date:</label>
@@ -38,7 +38,7 @@
             <option value="">Select a Category</option>
             @foreach (Category c in ViewBag.Categories)
             {
-            <option value="@c.CategoryId">@c.CategoryName</option>
+            <option value="@c.Id">@c.CatName</option>
             }
             
         </select>
