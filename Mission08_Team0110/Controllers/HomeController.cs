@@ -26,7 +26,7 @@ namespace Mission08_Team0110.Controllers
         {
             var applications = quadContext.responses.Include(x => x.Category)
                                .ToList();
-            return View();
+            return View(applications);
         }
 
         [HttpGet]
@@ -75,6 +75,7 @@ namespace Mission08_Team0110.Controllers
 
             return RedirectToAction("Quadrants");
         }
+
         [HttpGet]
         public IActionResult Delete(int id)
         {
@@ -91,6 +92,17 @@ namespace Mission08_Team0110.Controllers
             return RedirectToAction("Quadrants");
         }
 
+        public IActionResult Completed(int id)
+        {
+            var completed = quadContext.responses.Single(x => x.taskId == id);
+            completed.Completed= true;
+
+            quadContext.Update(completed);
+            quadContext.SaveChanges();
+
+
+            return RedirectToAction("Quadrants");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
