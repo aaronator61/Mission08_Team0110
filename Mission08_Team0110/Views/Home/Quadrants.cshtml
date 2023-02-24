@@ -2,19 +2,18 @@
     ViewData["Title"] = "Current Tasks";
 }
 
+@model List<ApplicationResponse>
+
 <div class="text-center">
     <h1 class="display-4">Current Tasks</h1>
 </div>
 
 
 <div class="container">
-    <h2 class="text-center mb-4">Four Quadrant Table</h2>
+    <h2 class="text-center mb-4">Breakdown</h2>
     <table class="table table-bordered">
         <thead>
-            <tr>
-                <th></th>
-                <th class="text-center" colspan="2">TASKS</th>
-            </tr>
+         
             <tr>
                 <th></th>
                 <th class="text-center">Urgent</th>
@@ -22,24 +21,43 @@
             </tr>
         </thead>
         <tbody>
+            @foreach (var i in Model) {
+                if (i.Completed == false)
+                {                    if (i.Quadrant == 1)
+                    {
             <tr>
                 <th class="text-center" rowspan="2">Important</th>
                 <td>Content 1</td>
                 <td>Content 2</td>
             </tr>
+                    }
+
+                    if (i.Quadrant == 2)
+                    {
             <tr>
                 <td>Content 5</td>
                 <td>Content 6</td>
             </tr>
+                    }
+
+                    if (i.Quadrant == 3)
+                    {
             <tr>
                 <th class="text-center" rowspan="2">Not Important</th>
                 <td>Content 9</td>
                 <td>Content 10</td>
             </tr>
+                    }
+
+                    if (i.Quadrant == 4)
+                    {
             <tr>
                 <td>Content 13</td>
                 <td>Content 14</td>
             </tr>
+                    }
+                }
+            }
         </tbody>
     </table>
 </div>
