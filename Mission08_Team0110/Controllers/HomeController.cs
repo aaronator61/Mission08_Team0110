@@ -25,8 +25,65 @@ namespace Mission08_Team0110.Controllers
 
         public IActionResult TaskForm()
         {
-            return View();
+            ViewBag.Categories = quadContext.Categories.ToList();
+            string pageTitle = "Add Task";
+            ViewBag.Title = pageTitle;
+            return View(new ApplicationResponse());
         }
+
+        [HttpPost]
+        public IActionResult TaskForm(ApplicationResponse ar)
+        {
+            if (ModelState.IsValid)
+            {
+                quadContext.Add(ar);
+                quadContext.SaveChanges();
+            }
+
+            ViewBag.Categories = quadContext.Categories.ToList();
+            return RedirectToAction("Quadrants");
+        }
+
+        [HttpGet]
+        public IActionResult Edit (int id)
+        {
+            ViewBag.Categories = quadContext.Categories.ToList();
+            var application = quadContext.responses.Include(x => x.Category)
+                                .Single(x => x.taskId == id);
+
+            string pageTitle = "Edit Task";
+            ViewBag.Title = pageTitle;
+            return View("TaskForm", application);
+        }
+
+        [HttpPost]
+        public IActionResult Edit (ApplicationResponse ar)
+        {
+            if (ModelState.IsValid)
+            {
+                quadContext.Update(ar);
+                quadContext.SaveChanges();
+            }
+            
+
+            return RedirectToAction("Quadrants");
+        }
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var application = quadContext.responses.Single(x => x.taskId == id);
+            return View(application);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(ApplicationResponse ar)
+        {
+            quadContext.responses.Remove(ar);
+            quadContext.SaveChanges();
+
+            return RedirectToAction("Quadrants");
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

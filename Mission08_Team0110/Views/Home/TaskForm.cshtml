@@ -1,18 +1,18 @@
-﻿
+﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
+*@
 @{
-    ViewData["Title"] = "Task Form";
+    ViewData["Title"] = ViewBag.Title;
 }
 
 
 @model Mission08_Team0110.Models.ApplicationResponse
 
-<h2>Task Form</h2>
+<h2>@ViewBag.Title</h2>
 <br /><br />
 
 <div>
-    Form to add in tasks to the database
+    <!--Form to add in tasks to the database-->
     <form method="post">
         <input type="hidden" asp-for="TaskId" />
 
@@ -32,9 +32,7 @@
 
         <label asp-for="CategoryId">Category:</label>
         <select asp-for="CategoryId">
-            <option>Select a Category</option>
-            <option>Values will go here once model is connected</option>
-            
+           
             <option value="">Select a Category</option>
             @foreach (Category c in ViewBag.Categories)
             {
@@ -47,8 +45,8 @@
         <label asp-for="Completed">Completed:</label>
         <select asp-for="Completed">
             <option></option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
+            <option value=True>Yes</option>
+            <option value=False>No</option>
         </select>
         <br /><br />
 
